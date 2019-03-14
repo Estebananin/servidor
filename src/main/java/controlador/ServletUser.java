@@ -6,21 +6,30 @@
 
 package controlador;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Manager.UserManager;
+import model.vo.Usuario;
+import org.json.JSONException;
+import org.json.JSONObject;
+import utils.Utils;
+
 
 /**
  *
  * @author esteban_lopez
- * Servlet del usuario
+ * Servlet del usuario PRUEBA PARA METODOS
  */
-
 
 public class ServletUser extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -52,14 +61,42 @@ public class ServletUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        Usuario usuario =  new Usuario();        
+        System.out.println("Registrar.doPost()");
+        String s = utils.Utils.readParams(request);
+        System.out.println("conexion correcta");
         
-         PrintWriter out = response.getWriter();
+       
+        //
         
-        UserManager un = new UserManager();
-        String a = "esteban.lopez@correo.usa.edu.co";
-        String b = "12345678";
-        out.println(un.insertUser(a,b));
-        /*ACA DEBO RECIBIR Y LAS PETICIONES 3HP PERO NO SÉ DE DONDE COGER SIQUIERA**/
+        System.out.println("aaaaa");
+        Gson gson = new Gson(); 
+        System.out.println("bbbbbb");
+        Utils util = new Utils();
+        System.out.println("holi");
+        
+        //ACÁ SE ROMPE
+        
+        Utils.fromJson(s, Usuario.class);
+        System.out.println("pasó XDXD");
+        
+        
+    //ERRORR
+        
+    //usuario = gson.fromJson(s, Usuario.class);
+        
+       // System.out.println(usuario.getCorreo().toString()+" ++++");
+        //
+         JSONObject json = new JSONObject();
+        try {
+            json.put("login correcto", "muy bien");
+            PrintWriter pw = response.getWriter();
+            pw.write(json.toString());
+            pw.print(json.toString());
+        } catch (JSONException ex) {
+            Logger.getLogger(ServletUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     

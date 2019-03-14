@@ -78,7 +78,7 @@ public class ServletUser extends HttpServlet {
         //ACÁ SE ROMPE
         
         Utils.fromJson(s, Usuario.class);
-        System.out.println("pasó XDXD");
+        System.out.println("pasó");
         
         
     //ERRORR

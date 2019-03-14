@@ -8,10 +8,11 @@ package model.dao;
 import javax.persistence.EntityManager;
 import model.Manager.EMF;
 import model.vo.Actividad;
+import model.vo.Usuario;
 
 /**
  *
- * @author pc
+ * @author esteban_lopez
  */
 public class ActiviDao {
     
@@ -38,6 +39,53 @@ public class ActiviDao {
         }
     }
     
+    /**
+     * Verifica la persistencia del objeto p en la base.
+     * @param p
+     * @return Devuelve 0 si no, devuelve 1 si sí persiste
+     */
+    public int findEntity(Actividad p){
+        int resp;
+        
+        try{
+            EntityManager entityManager = EMF.get().createEntityManager();
+        entityManager.getTransaction().begin();
+        Actividad actividad = entityManager.find(Actividad.class, p);
+        System.out.println("actividad nombe :: " + actividad.getNombre());
+        System.out.println("actividad descripcion :: " + actividad.getDescripcion());
+        entityManager.getTransaction().commit();
+        entityManager.close();   
+        resp = 1;
+        return resp;
+        }catch(Exception e){
+            e.printStackTrace();
+            resp = 0;
+            return resp;
+        }
+      
+    }
+    
+    /**
+     * Es un segundo método para verificar la existencia del objeto p 
+     * @param p
+     * @return Si el método find es diferente de null devuelve 1, de lo contrario 
+     * devuelve 0
+     */
+    public int findEntity2(Actividad p){
+        int resp = 0;
+        Actividad actividad;
+        actividad = em.find(Actividad.class, p);
+        if (actividad != null) {
+            resp = 1;
+        }
+        return resp;
+    }
+    
+    /**
+     * Tercer método de verificación pero con booleanos
+     * @param p
+     * @return true si lo contiene, falso si no lo contiene
+     */
     public boolean exists(Actividad p){
         boolean a = false;
         try{
@@ -66,5 +114,7 @@ public class ActiviDao {
         }
         return a;
     }
+    
+    
     
 }

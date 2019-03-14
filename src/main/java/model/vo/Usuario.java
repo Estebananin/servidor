@@ -6,22 +6,31 @@
 package model.vo;
 
 import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author esteban_lopez
  */
-@Entity  
-
+@Entity
+@Table(name = "usuario")
 public class Usuario implements Serializable {
 
-	   
-	@Id
-	private String correo;
-	private String contrasena;
-	private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "correo")
+    private String correo;
+
+    @Column(name = "contrasena")
+    private String contrasena;
+
+    private static final long serialVersionUID = 1L;
 
     public String getCorreo() {
         return correo;
@@ -39,7 +48,29 @@ public class Usuario implements Serializable {
         this.contrasena = contrasena;
     }
 
-    
-        
-        
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.contrasena);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (!Objects.equals(this.correo, other.correo)) {
+            return false;
+        }
+        if (!Objects.equals(this.contrasena, other.contrasena)) {
+            return false;
+        }
+        return true;
+    }
+
 }

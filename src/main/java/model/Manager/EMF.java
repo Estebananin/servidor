@@ -8,14 +8,29 @@ package model.Manager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+/**
+ * 
+ * @author esteban_lopez
+ */
+
 public final class EMF {
 	
-	private static final EntityManagerFactory emfInstance = Persistence.createEntityManagerFactory("Tiempo");
-	
-	private EMF() {}
+	private static EntityManagerFactory emfInstance;
+        private static final String Tiempo = "Tiempo";
 	
 	public static EntityManagerFactory get() {
-		return emfInstance;
+            if (emfInstance == null) {
+                emfInstance = Persistence.createEntityManagerFactory(Tiempo);
+            }
+            
+            return emfInstance;
 	}
 
+        public static void shutdown(){
+            if (emfInstance != null) {
+                emfInstance.close();
+            }
+        }
+        
+        
 }

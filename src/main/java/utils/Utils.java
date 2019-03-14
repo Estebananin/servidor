@@ -15,6 +15,10 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import com.google.gson.GsonBuilder;
 
+/**
+ * 
+ * @author profe_leyva
+ */
 
 public class Utils {
 	

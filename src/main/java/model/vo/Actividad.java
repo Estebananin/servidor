@@ -25,17 +25,17 @@ import model.vo.Usuario;
 
 /**
  *
- * @author LENOVO X
+ * @author esteban_lopez
  */
 @Entity
 @Table(name = "actividad")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a")
-    , @NamedQuery(name = "Actividad.findByNombre", query = "SELECT a FROM Actividad a WHERE a.nombre = :nombre")
-    , @NamedQuery(name = "Actividad.findByHora", query = "SELECT a FROM Actividad a WHERE a.hora = :hora")
-    , @NamedQuery(name = "Actividad.findByFecha", query = "SELECT a FROM Actividad a WHERE a.fecha = :fecha")
-    , @NamedQuery(name = "Actividad.findByDescripcion", query = "SELECT a FROM Actividad a WHERE a.descripcion = :descripcion")})
+    @NamedQuery(name = "Actividad.findAll", query = "SELECT a FROM Actividad a"),
+    @NamedQuery(name = "Actividad.findByNombre", query = "SELECT a FROM Actividad a WHERE a.nombre = :nombre"),
+    @NamedQuery(name = "Actividad.findByHora", query = "SELECT a FROM Actividad a WHERE a.hora = :hora"),
+    @NamedQuery(name = "Actividad.findByFecha", query = "SELECT a FROM Actividad a WHERE a.fecha = :fecha"),
+    @NamedQuery(name = "Actividad.findByDescripcion", query = "SELECT a FROM Actividad a WHERE a.descripcion = :descripcion")})
 public class Actividad implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,18 +45,20 @@ public class Actividad implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
+
     @Column(name = "fecha")
     @Temporal(TemporalType.DATE)
     private Date fecha;
     @Size(max = 255)
+
     @Column(name = "descripcion")
     private String descripcion;
    // @JoinColumn(name = "correo", referencedColumnName = "correo")
     //@ManyToOne
-    
 
     public Actividad() {
     }
@@ -97,14 +99,12 @@ public class Actividad implements Serializable {
         this.descripcion = descripcion;
     }
 
-    /**public Usuario getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(Usuario correo) {
-        this.correo = correo;
-    }**/
-
+    /**
+     * public Usuario getCorreo() { return correo; }
+     *
+     * public void setCorreo(Usuario correo) { this.correo = correo;
+    }*
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -129,5 +129,5 @@ public class Actividad implements Serializable {
     public String toString() {
         return "main.java.Modelo.Actividad[ nombre=" + nombre + " ]";
     }
-    
+
 }

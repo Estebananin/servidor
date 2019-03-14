@@ -66,6 +66,7 @@ public class ServletUser extends HttpServlet {
         String s = utils.Utils.readParams(request);
         System.out.println("conexion correcta");
         
+        
        
         //
         

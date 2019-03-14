@@ -15,7 +15,7 @@ import utils.Utils;
 
 /**
  *
- * @author pc
+ * @author esteban_lopez
  */
 public class ActivityManager {
     Actividad u = new Actividad();
